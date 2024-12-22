@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Welcome to Personal Finance Tracker!</h2>
+    <p class="text-center">Track your expenses and manage your budget effectively.</p>
+
+    <!-- New Features Section -->
+    <div class="row mt-4">
+        <div class="col-md-4 text-center">
+            <h3>Expense Tracking</h3>
+            <p>Keep track of all your expenses in one place.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <h3>Budget Management</h3>
+            <p>Set budgets and monitor your spending habits.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <h3>Reports</h3>
+            <p>Generate reports to analyze your financial health.</p>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+        <a href="/register" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</div>
+{% endblock %}

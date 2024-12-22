@@ -1,0 +1,43 @@
+<!-- templates/budget.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Budget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('manage_income') }}" class="btn btn-secondary mb-3">Back to Income</a>
+        <a href="{{ url_for('manage_expenses') }}" class="btn btn-secondary mb-3">Back to Expenses</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-info mb-3">Back to Dashboard</a>
+        
+        <h1 class="mt-4">Manage Budget</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-group">
+                <input type="number" class="form-control" name="total_budget" placeholder="Total Budget" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Set Budget</button>
+        </form>
+
+        <h2>Current Budget</h2>
+        {% if budget %}
+            <p class="alert alert-success fade-in">Total Budget: {{ budget.total_budget }}</p>
+            <p class="alert alert-info fade-in">Deficit: {{ deficit }}</p>
+        {% else %}
+            <p class="alert alert-warning fade-in">No budget set.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

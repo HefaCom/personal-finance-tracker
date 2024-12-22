@@ -1,0 +1,54 @@
+<!-- templates/income.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Income</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { margin-bottom: 20px; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('manage_expenses') }}" class="btn btn-secondary mb-3">Back</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-info mb-3">Back to Dashboard</a>
+        <h1>Manage Income</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="source">Source:</label>
+                <input type="text" class="form-control" id="source" name="source" placeholder="Source" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Income</button>
+        </form>
+
+        <h2 class="mt-4">Current Income Sources</h2>
+        <ul class="list-group">
+            {% for income in incomes %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ income.source }}</strong>: {{ income.amount }} on {{ income.date }}
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ url_for('delete_income', id=income.id) }}" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        <a href="{{ url_for('update_income', id=income.id) }}" class="btn btn-warning btn-sm">Update</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
